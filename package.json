@@ -42,7 +42,10 @@
     "ember-addon"
   ],
   "dependencies": {
-    "ember-cli-babel": "^5.1.3"
+    "ember-cli-babel": "^5.1.3",
+    "ember-cli-is-package-missing": "^1.0.0",
+    "ember-cli-string-utils": "^1.0.0",
+    "falcor-express": "^0.1.2"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
