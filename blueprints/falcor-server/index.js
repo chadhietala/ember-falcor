@@ -1,7 +1,7 @@
 var isPackageMissing = require('ember-cli-is-package-missing');
 
 module.exports = {
-  description: 'Generates a Falcor server directory for mocks and proxies.',
+  description: 'Generates a Falcor server directory for mocks.',
   afterInstall: function(options) {
    var routerMissing = isPackageMissing(this, 'falcor-router');
    var globMissing = isPackageMissing(this, 'glob');

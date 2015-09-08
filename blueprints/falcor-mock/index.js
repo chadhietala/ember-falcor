@@ -2,7 +2,7 @@ var isPackageMissing = require('ember-cli-is-package-missing');
 var stringUtil = require('ember-cli-string-utils');
 
 module.exports = {
-  description: 'Generates a Falcor server directory for mocks and proxies.',
+  description: 'Generates a Falcor route and service mock.',
   availableOptions: [
     {
       name: 'route',
@@ -22,7 +22,7 @@ module.exports = {
     var camelized = stringUtil.camelize(name);
     var classified = stringUtil.classify(name);
 
-    switch (options.entity.type) {
+    switch (options.entity.method) {
       case 'get':
         contents = 'get: function(pathSets) { }';
         break;
@@ -32,10 +32,13 @@ module.exports = {
       case 'call':
         contents = 'call: function(callPath, args, pathSuffixes, paths) { }';
         break;
+      default:
+        contents = 'get: function(pathSets) { }';
+        break;
     }
 
     return {
-      route: options.entity.route,
+      route: 'fuck',
       contents: contents,
       camelizedName: camelized,
       classifyName: classified,
