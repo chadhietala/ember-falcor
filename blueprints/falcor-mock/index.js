@@ -1,5 +1,7 @@
 var isPackageMissing = require('ember-cli-is-package-missing');
 var stringUtil = require('ember-cli-string-utils');
+var Blueprint = require('ember-cli/lib/models/blueprint');
+var path = require('path');
 
 module.exports = {
   description: 'Generates a Falcor route and service mock.',
@@ -14,6 +16,18 @@ module.exports = {
       default: 'get'
     }
   ],
+
+  beforeInstall: function(options) {
+    var serverBlueprint = Blueprint.lookup('falcor-server', {
+      ui: this.ui,
+      analytics: this.analytics,
+      project: this.project,
+      paths: [path.join(this.project.nodeModulesPath, 'ember-falcor', 'blueprints')]
+    });
+
+    return serverBlueprint.install(options);
+  },
+
   locals: function(options) {
     var contents;
 
@@ -22,7 +36,7 @@ module.exports = {
     var camelized = stringUtil.camelize(name);
     var classified = stringUtil.classify(name);
 
-    switch (options.entity.method) {
+    switch (options.entity.options.method) {
       case 'get':
         contents = 'get: function(pathSets) { }';
         break;
@@ -38,7 +52,7 @@ module.exports = {
     }
 
     return {
-      route: 'fuck',
+      route: options.entity.options.route,
       contents: contents,
       camelizedName: camelized,
       classifyName: classified,
