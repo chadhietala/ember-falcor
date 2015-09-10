@@ -1,6 +1,6 @@
 # Ember-falcor
 
-This README outlines the details of collaborating on this Ember addon.
+Installs the Falcor browser library and also adds the ability to write a mock Falcor server via blueprints.
 
 ## Installation
 
